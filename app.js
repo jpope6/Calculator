@@ -46,12 +46,39 @@ for (let i = 0; i < buttons.length; i++) {
         small_display.innerHTML += term2 + "=";
         display.innerHTML = answer;
         second_num = false;
+      } else if (
+        second_num && term2.length > 0 &&
+        (buttons[i].value == "+" ||
+          buttons[i].value == "-" ||
+          buttons[i].value == "*" ||
+          buttons[i].value == "/")
+      ) {
+        answer = operate(operator, term1, term2);
+        operator = buttons[i].value;
+        small_display.innerHTML = answer + operator;
+        term1 = answer;
+        term2 = "";
+        display.innerHTML = "";
       } else {
         if (term2.length <= 8) {
           term2 += buttons[i].value;
           display.innerHTML = term2;
         }
       }
+    } else if (
+      !first_num &&
+      !second_num &&
+      (buttons[i].value == "+" ||
+        buttons[i].value == "-" ||
+        buttons[i].value == "*" ||
+        buttons[i].value == "/")
+    ) {
+      operator = buttons[i].value;
+      small_display.innerHTML = answer + operator;
+      display.innerHTML = "";
+      term1 = answer;
+      term2 = "";
+      second_num = true;
     }
   });
 }
