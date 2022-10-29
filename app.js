@@ -11,8 +11,8 @@ let operator = "";
 let first_num = true;
 let second_num = false;
 
-clear.addEventListener("click", deleteOrClear(clear.value))
-del.addEventListener("click", deleteOrClear(del.value))
+clear.onclick = () => clearValues();
+del.onclick = () => deleteValue();
 
 // Add event listener to all buttons
 for (let i = 0; i < buttons.length; i++) {
@@ -30,45 +30,54 @@ for (let i = 0; i < buttons.length; i++) {
         second_num = true;
         first_num = false;
       } else {
-        term1 += buttons[i].value;
-        display.innerHTML = term1;
+        if (term1.length <= 8) {
+          term1 += buttons[i].value;
+          display.innerHTML = term1;
+        }
       }
     } else if (second_num) {
       if (buttons[i].value == "=") {
         answer = operate(operator, term1, term2);
+
+        if (answer.toString().length > 8) {
+          answer = Number.parseFloat(answer).toExponential(2);
+        }
+
         small_display.innerHTML += term2 + "=";
         display.innerHTML = answer;
         second_num = false;
       } else {
-        term2 += buttons[i].value;
-        display.innerHTML = term2
+        if (term2.length <= 8) {
+          term2 += buttons[i].value;
+          display.innerHTML = term2;
+        }
       }
     }
   });
 }
 
 // Delete or Clear buttons
-function deleteOrClear(val) {
-  if (val == "d") {
-    display.innerHTML = "";
+function deleteValue() {
+  display.innerHTML = "";
 
-    if (first_num) {
-      term1 = "";
-    }
-
-    if (second_num) {
-      term2 = "";
-    }
-  } else if (val == "c") {
-    display.innerHTML = "";
-    small_display.innerHTML = "";
+  if (first_num) {
     term1 = "";
-    term2 = "";
-    answer = "";
-    operator = "";
-    first_num = true;
-    second_num = false;
   }
+
+  if (second_num) {
+    term2 = "";
+  }
+}
+
+function clearValues() {
+  display.innerHTML = "";
+  small_display.innerHTML = "";
+  term1 = "";
+  term2 = "";
+  answer = "";
+  operator = "";
+  first_num = true;
+  second_num = false;
 }
 
 function add(term1, term2) {
