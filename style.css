@@ -17,8 +17,8 @@ body {
   align-items: center;
 }
 
-.clear,
-.delete {
+#clear,
+#delete {
   width: 135px;
   height: 50px;
   margin-bottom: 10px;
@@ -41,6 +41,25 @@ body {
   width: 300px;
   margin-left: 50px;
   border-radius: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#large_display {
+  position: absolute;
+  color: rgb(214, 214, 214);
+  padding-right: 10px;
+  font-size: 50px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#small_display {
+  font-family: "Courier New", Courier, monospace;
+  color: gray;
+  padding-right: 10px;
+  font-size: 25px;
+  position: relative;
+  top: -20px;
 }
 
 .calculator {
@@ -56,13 +75,13 @@ body {
 }
 
 .button:hover,
-.clear:hover,
-.delete:hover {
+#clear:hover,
+#delete:hover {
   background-color: gainsboro;
 }
 
 .button:active,
-.clear:active,
-.delete:active {
+#clear:active,
+#delete:active {
   background-color: silver;
 }
