@@ -47,7 +47,8 @@ for (let i = 0; i < buttons.length; i++) {
         display.innerHTML = answer;
         second_num = false;
       } else if (
-        second_num && term2.length > 0 &&
+        second_num &&
+        term2.length > 0 &&
         (buttons[i].value == "+" ||
           buttons[i].value == "-" ||
           buttons[i].value == "*" ||
